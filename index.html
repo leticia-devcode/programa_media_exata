@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Média</title>
+    <style>
+        body {
+            font-family: poppins 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: #ff0000df;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            margin: auto;
+        }
+        h1 {
+            color: #333;
+        }
+        input {
+            width: 80%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ae9c9c;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #d71c1c;
+            color: #000;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #9c0b0be5;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+<script>
+    alert("Olá, seja bem vindo (a) ao programa 'MÉDIA_EXATA' para somar as notas das provas do IESB! A fórmula utilizada pelo IESB para somar as notas é a seguinte: (P1*0,4)+(P2*0,6) ")
+    
+</script>
+    <div class="container">
+        <h1>Calculadora de Média das provas </h1>
+        <label>Digite a nota da P1: <input type="number" id="nota1" step="0.1"></label><br>
+        <label>Digite a nota da P2: <input type="number" id="nota2" step="0.1"></label><br>
+        <button onclick="calcularMedia()">Calcular</button>
+        <p id="resultado"></p>
+    </div>
+
+    <script>
+        function calcularMedia() {
+            let n1 = parseFloat(document.getElementById("nota1").value);
+            let n2 = parseFloat(document.getElementById("nota2").value);
+            let p1 = n1 * 0.4;
+            let p2 = n2 * 0.6;
+            let pt = p1 + p2;
+            let resultado = document.getElementById("resultado");
+
+            if (pt >= 5) {
+                resultado.innerText = `✅ Aprovado com média: ${pt.toFixed(2)}`;
+                resultado.style.color = "green";
+            } else {
+                resultado.innerText = `❌ Reprovado com média: ${pt.toFixed(2)}`;
+                resultado.style.color = "red";
+                let ps = parseFloat(prompt("Infelizmente sua nota não foi suficiente! Digite a nota da recuperação (Prova substitutiva):"));
+                if (ps > p1 && ps < p2) {
+                    p1 = ps;
+                } else {
+                    p2 = ps;
+                }
+                pt = (p1 * 0.4) + (p2 * 0.6);
+                if (pt >= 5) {
+                    resultado.innerText = `✅ Aprovado com média: ${pt.toFixed(2)}`;
+                    resultado.style.color = "green";
+                } else {
+                    resultado.innerText = `❌ Reprovado com média: ${pt.toFixed(2)}`;
+                    resultado.style.color = "red";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
